@@ -14,6 +14,7 @@ import {
 import {
   confirmedReset,
   reorderedApp,
+  toggleShouldCloseAppAfterSelect,
   updatedHotCode,
 } from '../../renderers/prefs/state/actions'
 
@@ -26,12 +27,14 @@ type Storage = {
   supportMessage: number
   isSetup: boolean
   height: number
+  shouldCloseAppAfterSelect: boolean
 }
 
 const defaultStorage: Storage = {
   apps: [],
   height: 200,
   isSetup: false,
+  shouldCloseAppAfterSelect: false,
   supportMessage: 0,
 }
 
@@ -86,6 +89,10 @@ const storage = createReducer<Storage>(defaultStorage, (builder) =>
       )
 
       state.apps[appIndex].hotCode = hotCode
+    })
+
+    .addCase(toggleShouldCloseAppAfterSelect, (state) => {
+      state.shouldCloseAppAfterSelect = !state.shouldCloseAppAfterSelect
     })
 
     .addCase(clickedDonate, (state) => {

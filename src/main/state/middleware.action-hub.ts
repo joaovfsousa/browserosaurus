@@ -139,7 +139,16 @@ export const actionHubMiddleware =
       // Ignore if app's bundle id is missing
       if (appName) {
         openApp(appName, nextState.data.url, isAlt, isShift)
+
+        const { storage } = getState()
+
         pickerWindow?.hide()
+
+        if (storage.shouldCloseAppAfterSelect) {
+          setTimeout(() => {
+            app.exit()
+          }, 100)
+        }
       }
     }
 
@@ -170,6 +179,14 @@ export const actionHubMiddleware =
           )
           pickerWindow?.hide()
         }
+      }
+
+      const { storage } = getState()
+
+      if (storage.shouldCloseAppAfterSelect) {
+        setTimeout(() => {
+          app.exit()
+        }, 100)
       }
     }
 

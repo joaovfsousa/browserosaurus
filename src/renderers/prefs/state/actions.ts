@@ -28,6 +28,8 @@ const reorderedApp = prefs<{ sourceName: AppName; destinationName: AppName }>(
 const clickedHomepageButton = prefs('homepage-button/clicked')
 const clickedOpenIssueButton = prefs('open-issue-button/clicked')
 
+const toggleShouldCloseAppAfterSelect = prefs('close-app-after-select/updated')
+
 export {
   clickedHomepageButton,
   clickedOpenIssueButton,
@@ -39,5 +41,6 @@ export {
   confirmedReset,
   reorderedApp,
   startedPrefs,
+  toggleShouldCloseAppAfterSelect,
   updatedHotCode,
 }

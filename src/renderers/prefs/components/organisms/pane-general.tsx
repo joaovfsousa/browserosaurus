@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux'
 
 import Button from '../../../shared/components/atoms/button'
+import Switch from '../../../shared/components/atoms/switch'
 import { useSelector } from '../../../shared/state/hooks'
 import {
   clickedRescanApps,
@@ -8,6 +9,7 @@ import {
   clickedUpdateButton,
   clickedUpdateRestartButton,
   confirmedReset,
+  toggleShouldCloseAppAfterSelect,
 } from '../../state/actions'
 import { Pane } from '../molecules/pane'
 
@@ -44,12 +46,16 @@ export const GeneralPane = (): JSX.Element => {
 
   const updateStatus = useSelector((state) => state.data.updateStatus)
 
+  const shouldCloseAppAfterSelect = useSelector(
+    (state) => state.storage.shouldCloseAppAfterSelect,
+  )
+
   const numberOfInstalledApps = useSelector(
     (state) => state.storage.apps.filter((app) => app.isInstalled).length,
   )
 
   return (
-    <Pane className="space-y-8" pane="general">
+    <Pane className="space-y-8 overflow-y-auto" pane="general">
       <Row>
         <Left>Default web browser:</Left>
         <Right>
@@ -117,6 +123,16 @@ export const GeneralPane = (): JSX.Element => {
             Restores all preferences to initial defaults and restarts the app as
             if run for the first time.
           </p>
+        </Right>
+      </Row>
+
+      <Row>
+        <Left>Quit app after select:</Left>
+        <Right>
+          <Switch
+            checked={shouldCloseAppAfterSelect}
+            onClick={() => dispatch(toggleShouldCloseAppAfterSelect())}
+          />
         </Right>
       </Row>
     </Pane>
