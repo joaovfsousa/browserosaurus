@@ -1,3 +1,11 @@
+The goal of this fork is to fix this
+[issue](https://github.com/will-stone/browserosaurus/issues/595).
+
+After I fixed it, the author of the project suggested
+[Velja](https://sindresorhus.com/velja) which worked perfectly for me, so I'm
+archiving this fork as I'm not using it anymore and maintaning a fork is a
+effort that doesn't make sense any more.
+
 <img src="./docs/icon_squooshed.png" alt="logo" width="100" height="100" align="right" />
 
 # Browserosaurus
